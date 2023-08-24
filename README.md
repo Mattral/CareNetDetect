@@ -1,5 +1,7 @@
 # Chest X-ray Analysis using Deep Learning
 
+![banner](assets/images/banner.png)
+
 This project is a demo streamlit app developed for Omdena Myanmar Chapter
 
 ## Project Goal
