@@ -5,9 +5,10 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 from tuberculosis import tuberculosis_page
 
-def change_bg():
-    st.set_page_config(page_title="Omdena Myanmar", page_icon="🇲🇲", initial_sidebar_state="expanded")
+st.set_page_config(page_title="Omdena Myanmar", page_icon="🇲🇲", initial_sidebar_state="expanded")
 
+
+def change_bg():
     @st.cache_data()
     def get_base64_of_bin_file(bin_file):
         with open(bin_file, 'rb') as f:
@@ -29,10 +30,10 @@ def change_bg():
 
         st.markdown(page_bg_img, unsafe_allow_html=True)
 
-    set_png_as_page_bg('assets/temp.png')
+    set_png_as_page_bg('assets/temp2.webp')
 
 
-# change_bg()
+change_bg()
 
 hide_streamlit_style = """
             <style>
@@ -62,7 +63,14 @@ selected = option_menu(
 
 def models():
     with st.sidebar:
-        st.image(img_logo)
+        l_padding, mid, r_padding = st.columns((1, 8, 2))
+        with l_padding:
+            st.empty()
+        with mid:
+            st.image(img_logo)
+        with r_padding:
+            st.empty()
+
         st.write("<br><br>", unsafe_allow_html=True)
         selected = option_menu(
             menu_title=None,
