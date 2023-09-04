@@ -30,7 +30,7 @@ def tuberculosis_page():
         st.image(uploaded_file, caption='Uploaded Image.', use_column_width=True)
         st.write("")
 
-        predict_button = st.button("Predict")
+        predict_button = st.button("ㅤㅤPredictㅤㅤ")
     
         if predict_button:
             model = tf.keras.models.load_model("models/tuberculosis_model.hdf5")
@@ -79,7 +79,7 @@ def pneumonia_page():
         st.image(uploaded_file, caption='Uploaded Image.', use_column_width=True)
         st.write("")
 
-        predict_button = st.button("Predict")
+        predict_button = st.button("ㅤㅤPredictㅤㅤ")
         
         if predict_button:
             progress_text = "Operation in progress. Please wait."
@@ -127,7 +127,7 @@ def cancer_page():
         st.image(uploaded_file, caption='Uploaded Image.', use_column_width=True)
         st.write("")
     
-        predict_button = st.button("Predict")
+        predict_button = st.button("ㅤㅤPredictㅤㅤ")
     
         if predict_button:
 
