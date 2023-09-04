@@ -75,8 +75,8 @@ def models():
         st.write("<br><br>", unsafe_allow_html=True)
         selected = option_menu(
             menu_title=None,
-            options=["Cancer", "Pneumonia", "Tuberculosis" ,"Covid"],
-            icons=["prescription2", "lungs", "capsule" ,"virus2"],
+            options=["Cancer", "Covid", "Pneumonia", "Tuberculosis"],
+            icons=["prescription2", "virus2", "lungs", "capsule"],
             styles=css_style)
 
     # ------------------------- MODELS -------------------------
