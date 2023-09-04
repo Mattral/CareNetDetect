@@ -1,49 +1,55 @@
 import base64
-from PIL import Image
-from config import PROJECT_BACKGROUND, PROJECT_GOALS, PROJECT_PROBLEM
 import streamlit as st
+from PIL import Image
 from streamlit_option_menu import option_menu
-from models import tuberculosis_page, cancer_page, pneumonia_page, covid_page
+from model import tuberculosis_page, cancer_page, pneumonia_page, covid_page
+from config import PROJECT_BACKGROUND, PROJECT_GOALS, PROJECT_PROBLEM
 
+# Set Streamlit page configuration
+st.set_page_config(
+    page_title="Omdena Myanmar",
+    page_icon="🇲🇲",
+    initial_sidebar_state="expanded"
+)
 
-st.set_page_config(page_title="Omdena Myanmar", page_icon="🇲🇲", initial_sidebar_state="expanded")
-
-
-def change_bg():
+# Function to set page background
+def set_page_background(png_file):
     @st.cache_data()
     def get_base64_of_bin_file(bin_file):
         with open(bin_file, 'rb') as f:
             data = f.read()
         return base64.b64encode(data).decode()
 
-    def set_png_as_page_bg(png_file):
-        bin_str = get_base64_of_bin_file(png_file)
-        page_bg_img = '''
+    bin_str = get_base64_of_bin_file(png_file)
+    page_bg_img = f'''
         <style>
-        .stApp {
-        background-image: url("data:image/png;base64,%s");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: scroll; # doesn't work
-        }
+        .stApp {{
+            background-image: url("data:image/png;base64,{bin_str}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+        }}
         </style>
-        ''' % bin_str
+    '''
+    st.markdown(page_bg_img, unsafe_allow_html=True)
 
-        st.markdown(page_bg_img, unsafe_allow_html=True)
+# Function to hide Streamlit style elements
+def hide_streamlit_style():
+    hide_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        </style>
+    """
+    st.markdown(hide_style, unsafe_allow_html=True)
 
-    set_png_as_page_bg('assets/background.webp')
+# Set the page background
+set_page_background('assets/background.webp')
 
+# Hide Streamlit style elements
+hide_streamlit_style()
 
-change_bg()
-
-hide_streamlit_style = """  
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
+# CSS styles
 css_style = {
     "icon": {"color": "white"},
     "nav-link": {"--hover-color": "grey"},
@@ -54,66 +60,52 @@ css_style = {
 img_banner = Image.open("assets/banner.png")
 img_logo = Image.open("assets/logo.png")
 
+# Main menu options
 selected = option_menu(
     menu_title=None,
     options=["Home", "Models", "About", "Contributors"],
     icons=["house", "gear", "info-circle", "people"],
     styles=css_style,
-    orientation="horizontal")
+    orientation="horizontal"
+)
 
-
-def models():
-    with st.sidebar:
-        l_padding, mid, r_padding = st.columns((1, 8, 2))
-        with l_padding:
-            st.empty()
-        with mid:
-            st.image(img_logo)
-        with r_padding:
-            st.empty()
-
-        st.write("<br><br>", unsafe_allow_html=True)
-        selected = option_menu(
-            menu_title=None,
-            options=["Cancer", "Covid", "Pneumonia", "Tuberculosis"],
-            icons=["prescription2", "virus2", "lungs", "capsule"],
-            styles=css_style)
-
-    # ------------------------- MODELS -------------------------
-    if selected == "Covid":
-        covid_page()
-    elif selected == "Tuberculosis":
-        tuberculosis_page()
-    elif selected == "Pneumonia":
-        pneumonia_page()
-    elif selected == "Cancer":
+# Function for the model page
+def model_page():
+    st.sidebar.image("assets/logo.png")
+    st.sidebar.title("Chest X-ray Detection using Deep Learning")
+    selected_task = st.sidebar.selectbox("Select Task", ["Cancer Detection", "Covid Detection", "Pneumonia Detection", "Tuberculosis Detection"])
+    
+    if selected_task == "Cancer Detection":
         cancer_page()
+    elif selected_task == "Tuberculosis Detection":
+        tuberculosis_page()
+    elif selected_task == "Pneumonia Detection":
+        pneumonia_page()
+    elif selected_task == "Covid Detection":
+        covid_page()
 
-
+# Function for the home page
 def home_page():
-    st.write(f"""# Detection Chest X-ray Images using Deep Learning""", unsafe_allow_html=True)
+    st.write("# Chest X-ray Detection using Deep Learning", unsafe_allow_html=True)
     st.image(img_banner)
 
     st.write(PROJECT_PROBLEM, unsafe_allow_html=True)
     st.write(PROJECT_GOALS, unsafe_allow_html=True)
 
-
+# Function for the about page
 def about_page():
     st.write(PROJECT_BACKGROUND, unsafe_allow_html=True)
 
-
+# Function for the contributors page
 def contributors_page():
-    st.success("""Thankyou everyone""")
+    st.success("Thank you everyone")
 
-
+# Display selected page
 if selected == "Home":
     home_page()
-
 elif selected == "Models":
-    models()
-
+    model_page()
 elif selected == "About":
     about_page()
-
 elif selected == "Contributors":
-    contributors_page() 
+    contributors_page()
