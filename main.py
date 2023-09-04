@@ -34,7 +34,7 @@ def change_bg():
     set_png_as_page_bg('assets/background.webp')
 
 
-# change_bg()
+change_bg()
 
 hide_streamlit_style = """  
             <style>
