@@ -3,7 +3,7 @@ from PIL import Image
 from config import PROJECT_BACKGROUND, PROJECT_GOALS, PROJECT_PROBLEM
 import streamlit as st
 from streamlit_option_menu import option_menu
-from models import tuberculosis_page, cancer_page, pneumonia_page
+from models import tuberculosis_page, cancer_page, pneumonia_page, covid_page
 
 
 st.set_page_config(page_title="Omdena Myanmar", page_icon="🇲🇲", initial_sidebar_state="expanded")
@@ -80,12 +80,6 @@ def models():
             styles=css_style)
 
     # ------------------------- MODELS -------------------------
-    def covid_page():
-        st.write("""<h1>Covid Detection System</h1>""", unsafe_allow_html=True)
-        uploaded_image = st.file_uploader(label="Upload chest x-ray image here", type=['jpg', 'png'])
-        if uploaded_image:
-            st.image(uploaded_image)
-
     if selected == "Covid":
         covid_page()
     elif selected == "Tuberculosis":
@@ -122,4 +116,4 @@ elif selected == "About":
     about_page()
 
 elif selected == "Contributors":
-    contributors_page()
+    contributors_page() 
