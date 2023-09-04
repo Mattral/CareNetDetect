@@ -3,7 +3,8 @@ from PIL import Image
 from config import PROJECT_BACKGROUND, PROJECT_GOALS, PROJECT_PROBLEM
 import streamlit as st
 from streamlit_option_menu import option_menu
-from tuberculosis import tuberculosis_page
+from models import tuberculosis_page, cancer_page, pneumonia_page
+
 
 st.set_page_config(page_title="Omdena Myanmar", page_icon="🇲🇲", initial_sidebar_state="expanded")
 
@@ -30,12 +31,12 @@ def change_bg():
 
         st.markdown(page_bg_img, unsafe_allow_html=True)
 
-    set_png_as_page_bg('assets/temp2.webp')
+    set_png_as_page_bg('assets/background.webp')
 
 
 # change_bg()
 
-hide_streamlit_style = """
+hide_streamlit_style = """  
             <style>
             #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
@@ -50,8 +51,8 @@ css_style = {
 }
 
 # Loading assets
-img_banner = Image.open("assets/images/banner.png")
-img_logo = Image.open("assets/images/logo.png")
+img_banner = Image.open("assets/banner.png")
+img_logo = Image.open("assets/logo.png")
 
 selected = option_menu(
     menu_title=None,
@@ -81,19 +82,6 @@ def models():
     # ------------------------- MODELS -------------------------
     def covid_page():
         st.write("""<h1>Covid Detection System</h1>""", unsafe_allow_html=True)
-        uploaded_image = st.file_uploader(label="Upload chest x-ray image here", type=['jpg', 'png'])
-        if uploaded_image:
-            st.image(uploaded_image)
-
-    def pneumonia_page():
-        st.write("""<h1>Pneumonia Detection System</h1>""", unsafe_allow_html=True)
-        uploaded_image = st.file_uploader(label="Upload chest x-ray image here", type=['jpg', 'png'])
-
-        if uploaded_image:
-            st.image(uploaded_image)
-
-    def cancer_page():
-        st.write("""<h1>Cancer Detection System</h1>""", unsafe_allow_html=True)
         uploaded_image = st.file_uploader(label="Upload chest x-ray image here", type=['jpg', 'png'])
         if uploaded_image:
             st.image(uploaded_image)
