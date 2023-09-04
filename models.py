@@ -53,14 +53,17 @@ def cancer_page():
 
             if predicted_class=="Normal":
                 st.success("##### Normal")
+                st.info(f"Confidence: {confidence}")
             
             elif predicted_class=="Benign":
                 st.warning("##### Benign")
+                st.info(f"Confidence: {confidence}")
             
             elif predicted_class=="Malignant":
                 st.error("##### Malignant")
+                st.info(f"Confidence: {confidence}")
             
-            st.info(f"Confidence: {confidence}")
+            # st.info(f"Confidence: {confidence}")
 
 
 def tuberculosis_page():
