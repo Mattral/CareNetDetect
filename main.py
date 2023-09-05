@@ -1,6 +1,5 @@
 import base64
 import streamlit as st
-from PIL import Image
 from streamlit_option_menu import option_menu
 from model import tuberculosis_page, cancer_page, pneumonia_page, covid_page
 from config import PROJECT_BACKGROUND, PROJECT_GOALS, PROJECT_PROBLEM
@@ -57,8 +56,10 @@ css_style = {
 }
 
 # Loading assets
-img_banner = Image.open("assets/banner.png")
-img_logo = Image.open("assets/logo.png")
+# img_banner = Image.open("assets/banner.png")
+# img_logo = Image.open("assets/logo.png")
+img_banner = "assets/banner.png"
+img_logo = "assets/logo.png"
 
 # Main menu options
 selected = option_menu(
