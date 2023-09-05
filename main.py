@@ -74,7 +74,7 @@ selected = option_menu(
 def model_page():
     st.sidebar.image("assets/logo.png")
     st.sidebar.write("<h1>Identifying Diseases in Chest X-Rays & COVID-19 Detection</h1><br>", unsafe_allow_html=True)
-    selected_task = st.sidebar.selectbox("Select Task", ["Cancer Detection", "Covid Detection", "Pneumonia Detection", "Tuberculosis Detection"])
+    selected_task = st.sidebar.selectbox("Select Task", ["Cancer Detection",  "Tuberculosis Detection", "Covid Detection", "Pneumonia Detection"])
     
     if selected_task == "Cancer Detection":
         cancer_page()
