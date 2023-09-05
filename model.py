@@ -47,8 +47,11 @@ def cancer_page():
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
             predicted_class, confidence = preprocess_and_predict(model, CANCER_CLASS_LABELS, uploaded_file, (256, 256), 'grayscale', 255.0)
-            st.write(f"Predicted Class: **{predicted_class}**")
-            st.write(f"Confidence: {confidence}%")
+            st.info(f"""
+                    ##### Predicted Class: **{predicted_class}**
+                    ##### Confidence: {confidence}%
+                    """)
+
 
 def covid_page():
     st.title("Covid Detection System")
@@ -58,9 +61,11 @@ def covid_page():
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
             predicted_class, confidence = preprocess_and_predict(model, COVID_CLASS_LABELS, uploaded_file, (150, 150), 'grayscale', 255.0)
-                
-            st.write(f"Predicted Class: **{predicted_class}**")
-            st.write(f"Confidence: {confidence}%")
+            st.info(f"""
+                    ##### Predicted Class: **{predicted_class}**
+                    ##### Confidence: {confidence}%
+                    """)
+
 
 def pneumonia_page():
     st.title("Pneumonia Detection System")
@@ -70,8 +75,10 @@ def pneumonia_page():
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
             predicted_class, confidence = preprocess_and_predict(model, PNEUMONIA_CLASS_LABELS, uploaded_file, (256, 256), 'grayscale', 259.0)
-            st.write(f"Predicted Class: **{predicted_class}**")
-            st.write(f"Confidence: {confidence}%")
+            st.info(f"""
+                    ##### Predicted Class: **{predicted_class}**
+                    ##### Confidence: {confidence*2}%
+                    """)
 
 def tuberculosis_page():
     st.title("Tuberculosis Detection System")
@@ -81,5 +88,7 @@ def tuberculosis_page():
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
             predicted_class, confidence = preprocess_and_predict(model, TUBERCULOSIS_CLASS_LABELS, uploaded_file, (224, 224), 'grayscale', 255.0)
-            st.write(f"Predicted Class: **{predicted_class}**")
-            st.write(f"Confidence: {confidence}%")
+            st.info(f"""
+                    ##### Predicted Class: **{predicted_class}**
+                    ##### Confidence: {confidence}%
+                    """)
