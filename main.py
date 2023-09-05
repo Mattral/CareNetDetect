@@ -72,7 +72,7 @@ selected = option_menu(
 # Function for the model page
 def model_page():
     st.sidebar.image("assets/logo.png")
-    st.sidebar.title("Chest X-ray Detection using Deep Learning")
+    st.sidebar.title("Identifying Diseases in Chest X-Rays & COVID-19 Detection")
     selected_task = st.sidebar.selectbox("Select Task", ["Cancer Detection", "Covid Detection", "Pneumonia Detection", "Tuberculosis Detection"])
     
     if selected_task == "Cancer Detection":
@@ -86,7 +86,7 @@ def model_page():
 
 # Function for the home page
 def home_page():
-    st.write("# Chest X-ray Detection using Deep Learning", unsafe_allow_html=True)
+    st.write("# Identifying Diseases in Chest X-Rays & COVID-19 Detection", unsafe_allow_html=True)
     st.image(img_banner)
 
     st.write(PROJECT_PROBLEM, unsafe_allow_html=True)
