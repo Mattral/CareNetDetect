@@ -1,3 +1,4 @@
+import cv2
 import numpy as np
 import streamlit as st
 import tensorflow as tf
@@ -5,7 +6,7 @@ from tensorflow.keras.preprocessing import image
 
 # Constants for model paths
 CANCER_MODEL_PATH = 'models/cancer_model.h5'
-TUBERCULOSIS_MODEL_PATH = 'models/tuberculosis_model.hdf5'
+TUBERCULOSIS_MODEL_PATH = 'models/tuberculosis_model.h5'
 PNEUMONIA_MODEL_PATH = 'models/pneumonia_model.h5'
 COVID_MODEL_PATH = 'models/covid_model.h5'
 
@@ -35,9 +36,9 @@ def preprocess_and_predict(model, class_labels, image_file, target_size, color_m
 
         prediction = model.predict(img)
         predicted_class = class_labels[int(np.round(prediction[0][0]))]
-        confidence = ""
 
-        return predicted_class, confidence
+        return predicted_class
+        
 
 def cancer_page():
     st.title("Cancer Detection System")
@@ -60,10 +61,9 @@ def covid_page():
         model = tf.keras.models.load_model(COVID_MODEL_PATH)
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
-            predicted_class, confidence = preprocess_and_predict(model, COVID_CLASS_LABELS, uploaded_file, (150, 150), 'grayscale', 255.0)
+            predicted_class = preprocess_and_predict(model, COVID_CLASS_LABELS, uploaded_file, (150, 150), 'grayscale', 255.0)
             st.info(f"""
                     ##### Predicted Class: **{predicted_class}**
-                    ##### Confidence: {confidence}%
                     """)
 
 
@@ -81,14 +81,25 @@ def pneumonia_page():
                     """)
 
 def tuberculosis_page():
+    def preprocess_and_predict(image_file):
+        try:
+            img = image.load_img(image_file, target_size=(28, 28), color_mode="rgb")
+            img_array = image.img_to_array(img)
+            img_array = img_array / 255 
+            img_array = np.expand_dims(img_array, axis=0)  
+            pred = model.predict(img_array)
+            predicted_class = TUBERCULOSIS_CLASS_LABELS[np.argmax(pred)]
+            return predicted_class
+        except Exception as e:
+            st.error(f"Error processing and predicting: {e}")
+            return "Error"
+    
+
     st.title("Tuberculosis Detection System")
     uploaded_file = st.file_uploader("Upload chest x-ray image here...", type=["jpg", "png", "jpeg"])
     if uploaded_file:
         model = tf.keras.models.load_model(TUBERCULOSIS_MODEL_PATH)
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
-            predicted_class, confidence = preprocess_and_predict(model, TUBERCULOSIS_CLASS_LABELS, uploaded_file, (224, 224), 'grayscale', 255.0)
-            st.info(f"""
-                    ##### Predicted Class: **{predicted_class}**
-                    ##### Confidence: {confidence}%
-                    """)
+            predicted_class = preprocess_and_predict(uploaded_file)
+            st.info(f"""##### Predicted Class: **{predicted_class}**""")
