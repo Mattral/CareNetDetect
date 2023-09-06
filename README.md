@@ -40,6 +40,9 @@ streamlit run main.py
 
 Once the application is running, you can access it through your web browser. The user interface will prompt you to input the relevant parameters such as pH levels, temperature, conductivity, and dissolved oxygen. After providing the required inputs, click the "Predict Water Quality" button to obtain the predicted water quality result for the specified location.
 
+## Demo Video
+Here's a video of me demonstrating this web application, [link](https://drive.google.com/file/d/1pEdLix0WeVmQT6jniR6ed7XUkM3lUWw5/view)
+
 ## Acknowledgments
 
 I would like to acknowledge Omdena's Myanmar Chapter for providing the opportunity to work on this project. I also extend my gratitude to all the contributors who participated in developing this system.
