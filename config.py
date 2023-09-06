@@ -14,8 +14,8 @@ PROJECT_BACKGROUND = """<h1>Project background</h1><br><p>In recent years, the w
     detecting COVID-19 and various chest-related diseases from radiographic images. By harnessing the power of 
     artificial intelligence and computer vision, this project aims to revolutionize the diagnostic process and 
     facilitate early intervention, ultimately saving lives and improving healthcare outcomes.</p><br>
-    Local Chapter Website :<br>
-    Github Repository     :<br>
+    Local Chapter Website : <a href="https://omdena.com/local-chapters/myanmar-chapter/">Visit Site</a><br>
+    Github Repository     : <a href="https://github.com/OmdenaAI/myanmar-chapter-chest-x-rays">Visit Site</a><br>
     """
 
 PROJECT_GOALS = f"""<h2>Project goals</h2> <p>The project's primary objective is to create an AI-driven healthcare 
