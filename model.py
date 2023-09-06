@@ -47,7 +47,12 @@ def cancer_page():
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
             predicted_class, confidence = preprocess_and_predict(model, CANCER_CLASS_LABELS, uploaded_file, (256, 256), 'grayscale', 255.0)
-            st.info(f"""##### Predicted Class: **{predicted_class}**""")
+            if predicted_class=="Normal":
+                st.success(f"""##### Predicted Class: **{predicted_class}**""")
+            elif predicted_class=="Benign":
+                st.warning(f"""##### Predicted Class: **{predicted_class}**""")
+            elif predicted_class=="Malignant":
+                st.error(f"""##### Predicted Class: **{predicted_class}**""")
 
 
 def covid_page():
@@ -58,7 +63,10 @@ def covid_page():
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
             predicted_class = preprocess_and_predict(model, COVID_CLASS_LABELS, uploaded_file, (150, 150), 'grayscale', 255.0)
-            st.info(f"""##### Predicted Class: **{predicted_class}**""")
+            if predicted_class=="Normal":
+                st.success(f"""##### Predicted Class: **{predicted_class}**""")
+            elif predicted_class=="Covid":
+                st.error(f"""##### Predicted Class: **{predicted_class}**""")
 
 
 def pneumonia_page():
@@ -69,7 +77,11 @@ def pneumonia_page():
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
             predicted_class, confidence = preprocess_and_predict(model, PNEUMONIA_CLASS_LABELS, uploaded_file, (256, 256), 'grayscale', 259.0)
-            st.info(f"""##### Predicted Class: **{predicted_class}**""")
+            if predicted_class=="Normal":
+                st.success(f"""##### Predicted Class: **{predicted_class}**""")
+            elif predicted_class=="Pneumonia":
+                st.error(f"""##### Predicted Class: **{predicted_class}**""")
+
 
 def tuberculosis_page():
     def preprocess_and_predict(image_file):
@@ -93,4 +105,7 @@ def tuberculosis_page():
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
             predicted_class = preprocess_and_predict(uploaded_file)
-            st.info(f"""##### Predicted Class: **{predicted_class}**""")
+            if predicted_class=="Normal":
+                st.success(f"""##### Predicted Class: **{predicted_class}**""")
+            elif predicted_class=="Tuberculosis":
+                st.error(f"""##### Predicted Class: **{predicted_class}**""")
