@@ -35,8 +35,9 @@ def preprocess_and_predict(model, class_labels, image_file, target_size, color_m
 
         prediction = model.predict(img)
         predicted_class = class_labels[int(np.round(prediction[0][0]))]
+        confidence = prediction[0][0]
 
-        return predicted_class
+        return predicted_class, confidence
         
 
 def cancer_page():
@@ -53,6 +54,7 @@ def cancer_page():
                 st.warning(f"""##### Predicted Class: **{predicted_class}**""")
             elif predicted_class=="Malignant":
                 st.error(f"""##### Predicted Class: **{predicted_class}**""")
+            st.info(f"""##### Confidence: **{confidence} %**""")
 
 
 def covid_page():
@@ -62,12 +64,12 @@ def covid_page():
         model = tf.keras.models.load_model(COVID_MODEL_PATH)
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
-            predicted_class = preprocess_and_predict(model, COVID_CLASS_LABELS, uploaded_file, (150, 150), 'grayscale', 255.0)
+            predicted_class, confidence = preprocess_and_predict(model, COVID_CLASS_LABELS, uploaded_file, (150, 150), 'grayscale', 255.0)
             if predicted_class=="Normal":
                 st.success(f"""##### Predicted Class: **{predicted_class}**""")
             elif predicted_class=="Covid":
                 st.error(f"""##### Predicted Class: **{predicted_class}**""")
-
+            st.info(f"""##### Confidence: **{100-confidence} %**""")
 
 def pneumonia_page():
     st.title("Pneumonia Detection System")
@@ -81,6 +83,7 @@ def pneumonia_page():
                 st.success(f"""##### Predicted Class: **{predicted_class}**""")
             elif predicted_class=="Pneumonia":
                 st.error(f"""##### Predicted Class: **{predicted_class}**""")
+            # st.info(f"""##### Confidence: **{confidence} %**""")
 
 
 def tuberculosis_page():
@@ -93,6 +96,7 @@ def tuberculosis_page():
             pred = model.predict(img_array)
             predicted_class = TUBERCULOSIS_CLASS_LABELS[np.argmax(pred)]
             return predicted_class
+            
         except Exception as e:
             st.error(f"Error processing and predicting: {e}")
             return "Error"
@@ -109,3 +113,4 @@ def tuberculosis_page():
                 st.success(f"""##### Predicted Class: **{predicted_class}**""")
             elif predicted_class=="Tuberculosis":
                 st.error(f"""##### Predicted Class: **{predicted_class}**""")
+            # st.info(f"""##### Confidence: **{confidence}**""")
