@@ -3,6 +3,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 from model import tuberculosis_page, cancer_page, pneumonia_page, covid_page
 from config import PROJECT_BACKGROUND, PROJECT_GOALS, PROJECT_PROBLEM
+from contributors import contributors_page
 
 # Set Streamlit page configuration
 st.set_page_config(
@@ -56,8 +57,6 @@ css_style = {
 }
 
 # Loading assets
-# img_banner = Image.open("assets/banner.png")
-# img_logo = Image.open("assets/logo.png")
 img_banner = "assets/banner.png"
 img_logo = "assets/logo.png"
 
@@ -74,7 +73,9 @@ selected = option_menu(
 def model_page():
     st.sidebar.image("assets/logo.png")
     st.sidebar.write("<h1>Identifying Diseases in Chest X-Rays & COVID-19 Detection</h1><br>", unsafe_allow_html=True)
-    selected_task = st.sidebar.selectbox("Select Task", ["Cancer Detection",  "Tuberculosis Detection", "Covid Detection", "Pneumonia Detection"])
+    selected_task = st.sidebar.selectbox("Select Task",
+                                         ["Cancer Detection", "Tuberculosis Detection", "Covid Detection",
+                                          "Pneumonia Detection"])
     
     if selected_task == "Cancer Detection":
         cancer_page()
@@ -96,10 +97,6 @@ def home_page():
 # Function for the about page
 def about_page():
     st.write(PROJECT_BACKGROUND, unsafe_allow_html=True)
-
-# Function for the contributors page
-def contributors_page():
-    st.success("Thank you everyone")
 
 # Display selected page
 if selected == "Home":
