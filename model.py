@@ -39,6 +39,7 @@ def preprocess_and_predict(model, class_labels, image_file, target_size, color_m
 
         return predicted_class, confidence
         
+ 
 
 def cancer_page():
     st.title("Cancer Detection System")
@@ -47,12 +48,13 @@ def cancer_page():
         model = tf.keras.models.load_model(CANCER_MODEL_PATH)
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
-            predicted_class, confidence = preprocess_and_predict(model, CANCER_CLASS_LABELS, uploaded_file, (256, 256), 'grayscale', 255.0)
-            if predicted_class=="Normal":
+            predicted_class, confidence = preprocess_and_predict(model, CANCER_CLASS_LABELS, uploaded_file, (256, 256),
+                                                                 'grayscale', 255.0)
+            if predicted_class == "Normal":
                 st.success(f"""##### Predicted Class: **{predicted_class}**""")
-            elif predicted_class=="Benign":
+            elif predicted_class == "Benign":
                 st.warning(f"""##### Predicted Class: **{predicted_class}**""")
-            elif predicted_class=="Malignant":
+            elif predicted_class == "Malignant":
                 st.error(f"""##### Predicted Class: **{predicted_class}**""")
             st.info(f"""##### Confidence: **{confidence} %**""")
 
@@ -64,12 +66,14 @@ def covid_page():
         model = tf.keras.models.load_model(COVID_MODEL_PATH)
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
-            predicted_class, confidence = preprocess_and_predict(model, COVID_CLASS_LABELS, uploaded_file, (150, 150), 'grayscale', 255.0)
-            if predicted_class=="Normal":
+            predicted_class, confidence = preprocess_and_predict(model, COVID_CLASS_LABELS, uploaded_file, (150, 150),
+                                                                 'grayscale', 255.0)
+            if predicted_class == "Normal":
                 st.success(f"""##### Predicted Class: **{predicted_class}**""")
-            elif predicted_class=="Covid":
+            elif predicted_class == "Covid":
                 st.error(f"""##### Predicted Class: **{predicted_class}**""")
-            st.info(f"""##### Confidence: **{100-confidence} %**""")
+            st.info(f"""##### Confidence: **{100 - confidence} %**""")
+
 
 def pneumonia_page():
     st.title("Pneumonia Detection System")
@@ -78,10 +82,11 @@ def pneumonia_page():
         model = tf.keras.models.load_model(PNEUMONIA_MODEL_PATH)
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
-            predicted_class, confidence = preprocess_and_predict(model, PNEUMONIA_CLASS_LABELS, uploaded_file, (256, 256), 'grayscale', 259.0)
-            if predicted_class=="Normal":
+            predicted_class, confidence = preprocess_and_predict(model, PNEUMONIA_CLASS_LABELS, uploaded_file,
+                                                                 (256, 256), 'grayscale', 259.0)
+            if predicted_class == "Normal":
                 st.success(f"""##### Predicted Class: **{predicted_class}**""")
-            elif predicted_class=="Pneumonia":
+            elif predicted_class == "Pneumonia":
                 st.error(f"""##### Predicted Class: **{predicted_class}**""")
             # st.info(f"""##### Confidence: **{confidence} %**""")
 
@@ -91,16 +96,15 @@ def tuberculosis_page():
         try:
             img = image.load_img(image_file, target_size=(28, 28), color_mode="rgb")
             img_array = image.img_to_array(img)
-            img_array = img_array / 255 
-            img_array = np.expand_dims(img_array, axis=0)  
+            img_array = img_array / 255
+            img_array = np.expand_dims(img_array, axis=0)
             pred = model.predict(img_array)
             predicted_class = TUBERCULOSIS_CLASS_LABELS[np.argmax(pred)]
             return predicted_class
-            
+
         except Exception as e:
             st.error(f"Error processing and predicting: {e}")
             return "Error"
-    
 
     st.title("Tuberculosis Detection System")
     uploaded_file = st.file_uploader("Upload chest x-ray image here...", type=["jpg", "png", "jpeg"])
@@ -109,8 +113,8 @@ def tuberculosis_page():
         predict_button = st.button("ㅤㅤPredictㅤㅤ")
         if predict_button:
             predicted_class = preprocess_and_predict(uploaded_file)
-            if predicted_class=="Normal":
+            if predicted_class == "Normal":
                 st.success(f"""##### Predicted Class: **{predicted_class}**""")
-            elif predicted_class=="Tuberculosis":
+            elif predicted_class == "Tuberculosis":
                 st.error(f"""##### Predicted Class: **{predicted_class}**""")
             # st.info(f"""##### Confidence: **{confidence}**""")
