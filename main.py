@@ -7,7 +7,7 @@ from contributors import contributors_page
 
 # Set Streamlit page configuration
 st.set_page_config(
-    page_title="Omdena Myanmar",
+    page_title="CareNetAI",
     page_icon="🇲🇲",
     initial_sidebar_state="expanded"
 )
@@ -63,7 +63,7 @@ img_logo = "assets/logo.png"
 # Main menu options
 selected = option_menu(
     menu_title=None,
-    options=["Home", "Models", "About", "Contributors"],
+    options=["Home", "Models", "About", "Members"],
     icons=["house", "gear", "info-circle", "people"],
     styles=css_style,
     orientation="horizontal"
