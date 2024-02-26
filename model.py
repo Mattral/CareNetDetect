@@ -120,7 +120,7 @@ def tuberculosis_page():
                 st.error(f"""##### Predicted Class: **{predicted_class}**""")
             # st.info(f"""##### Confidence: **{confidence}**""")
 
-def pneumonia_page():
+def alzheimer_page():
     st.title("Alzheimer Detection System")
     uploaded_file = st.file_uploader("Upload Brain Scan image here...", type=["jpg", "png", "jpeg"])
     if uploaded_file:
