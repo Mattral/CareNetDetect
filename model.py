@@ -14,6 +14,7 @@ CANCER_CLASS_LABELS = ['Benign', 'Malignant', 'Normal']
 TUBERCULOSIS_CLASS_LABELS = ['Normal', 'Tuberculosis']
 PNEUMONIA_CLASS_LABELS = ['Normal', 'Pneumonia']
 COVID_CLASS_LABELS = ['Covid', 'Normal']
+ALZ_CLASS_LABELS = ['Alzheimer','Normal']
 
 # Common preprocessing and prediction function
 def preprocess_and_predict(model, class_labels, image_file, target_size, color_mode=None, scale_factor=1.0):
@@ -118,3 +119,18 @@ def tuberculosis_page():
             elif predicted_class == "Tuberculosis":
                 st.error(f"""##### Predicted Class: **{predicted_class}**""")
             # st.info(f"""##### Confidence: **{confidence}**""")
+
+def pneumonia_page():
+    st.title("Alzheimer Detection System")
+    uploaded_file = st.file_uploader("Upload Brain Scan image here...", type=["jpg", "png", "jpeg"])
+    if uploaded_file:
+        model = tf.keras.models.load_model(PNEUMONIA_MODEL_PATH)
+        predict_button = st.button("ㅤㅤPredictㅤㅤ")
+        if predict_button:
+            predicted_class, confidence = preprocess_and_predict(model, PNEUMONIA_CLASS_LABELS, uploaded_file,
+                                                                 (256, 256), 'grayscale', 259.0)
+            if predicted_class == "Normal":
+                st.success(f"""##### Predicted Class: **{predicted_class}**""")
+            elif predicted_class == "Alzheimer":
+                st.error(f"""##### Predicted Class: **{predicted_class}**""")
+            # st.info(f"""##### Confidence: **{confidence} %**""")
