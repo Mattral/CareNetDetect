@@ -1,7 +1,7 @@
 import base64
 import streamlit as st
 from streamlit_option_menu import option_menu
-from model import tuberculosis_page, cancer_page, pneumonia_page, covid_page
+from model import tuberculosis_page, cancer_page, pneumonia_page, covid_page, alzheimer_page
 from config import PROJECT_BACKGROUND, PROJECT_GOALS, PROJECT_PROBLEM
 from contributors import contributors_page
 
@@ -75,7 +75,7 @@ def model_page():
     st.sidebar.write("<h1>Identifying Diseases in Chest X-Rays & Alzheimer Detection</h1><br>", unsafe_allow_html=True)
     selected_task = st.sidebar.selectbox("Select Task",
                                          ["Cancer Detection", "Tuberculosis Detection", "Covid Detection",
-                                          "Pneumonia Detection"])
+                                          "Pneumonia Detection", "Alzheimer's Detection"])
     
     if selected_task == "Cancer Detection":
         cancer_page()
@@ -85,6 +85,8 @@ def model_page():
         pneumonia_page()
     elif selected_task == "Covid Detection":
         covid_page()
+    elif selected_task == "Alzheimer's Detection":
+        alzheimer_page()
 
 # Function for the home page
 def home_page():
