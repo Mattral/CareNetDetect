@@ -90,7 +90,7 @@ def model_page():
 
 # Function for the home page
 def home_page():
-    st.write("# Identifying Diseases in Chest X-Rays & Alzheimer's Detection", unsafe_allow_html=True)
+    st.write("# Made for MLH Hackathon, CareNet Detection tool", unsafe_allow_html=True)
     st.image(img_banner)
 
     st.write(PROJECT_PROBLEM, unsafe_allow_html=True)
