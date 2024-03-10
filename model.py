@@ -3,6 +3,7 @@ import streamlit as st
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 
+
 # Constants for model paths
 CANCER_MODEL_PATH = 'models/cancer_model.h5'
 TUBERCULOSIS_MODEL_PATH = 'models/tuberculosis_model.h5'
