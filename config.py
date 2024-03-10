@@ -4,8 +4,8 @@ and Machine Learning (ML) technologies. Our mission is to make advanced healthca
 services—such as early disease detection, virtual health assistance, and personalized
 health monitoring—accessible to a global audience, with a special focus on underserved
 communities.</p><br>
-    Our Website : <a href="https://carenetai.github.io/">Visit Site</a><br>
-    LLM ChatBot Demo : <a href="https://llamatwoandreplicate.streamlit.app/">Visit Site</a><br>
+    Our Website : <a href="https://mattral.github.io/CareNetAI/">Visit Site</a><br>
+    LLM ChatBot Demo : <a href="https://carenetaichat.streamlit.app/">Visit Site</a><br>
     """
 
 PROJECT_GOALS = f"""<h2>Mission and Vision Statement</h2> <p>To make people accessible to advanced healthcare through AI and
