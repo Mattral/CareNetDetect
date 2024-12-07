@@ -72,10 +72,10 @@ selected = option_menu(
 # Function for the model page
 def model_page():
     st.sidebar.image("assets/logo.png")
-    st.sidebar.write("<h1>Made for MLH Hackathon, CareNet Detection tool<h1><br>", unsafe_allow_html=True)
+    st.sidebar.write("<h1>Made for Lokahi Hackathon, Disease Detection tool<h1><br>", unsafe_allow_html=True)
     selected_task = st.sidebar.selectbox("Select Task",
                                          ["Cancer Detection", "Tuberculosis Detection", "Covid Detection",
-                                          "Pneumonia Detection", "Alzheimer's Detection"])
+                                          "Pneumonia Detection", "Alzheimer's (beta)"])
     
     if selected_task == "Cancer Detection":
         cancer_page()
@@ -85,12 +85,12 @@ def model_page():
         pneumonia_page()
     elif selected_task == "Covid Detection":
         covid_page()
-    elif selected_task == "Alzheimer's Detection":
+    elif selected_task == "Alzheimer's (beta)":
         alzheimer_page()
 
 # Function for the home page
 def home_page():
-    st.write("# Made for MLH Hackathon, CareNet Detection tool", unsafe_allow_html=True)
+    st.write("# Made for Lokahi Hackathon, DIsease Detection tool", unsafe_allow_html=True)
     st.image(img_banner)
 
     st.write(PROJECT_PROBLEM, unsafe_allow_html=True)
@@ -107,5 +107,3 @@ elif selected == "Models":
     model_page()
 elif selected == "About":
     about_page()
-elif selected == "Contributors":
-    contributors_page()
