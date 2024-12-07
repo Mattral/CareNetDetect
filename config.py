@@ -30,4 +30,3 @@ reactive rather than proactive. These challenges underscore the urgent need for
 innovative solutions that democratize access to healthcare services, ensuring timely
 and equitable healthcare support for all, regardless of geographic or economic status.<br>
 """
-
