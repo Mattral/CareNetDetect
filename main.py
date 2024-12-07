@@ -63,7 +63,7 @@ img_logo = "assets/logo.png"
 # Main menu options
 selected = option_menu(
     menu_title=None,
-    options=["Home", "Models", "About", "Members"],
+    options=["Home", "Models", "About", "Medical Document AI"],
     icons=["house", "gear", "info-circle", "people"],
     styles=css_style,
     orientation="horizontal"
@@ -107,5 +107,5 @@ elif selected == "Models":
     model_page()
 elif selected == "About":
     about_page()
-elif selected == "Contributors":
+elif selected == "Medical Document AI":
     contributors_page()
