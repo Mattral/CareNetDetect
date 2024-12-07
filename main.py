@@ -107,3 +107,5 @@ elif selected == "Models":
     model_page()
 elif selected == "About":
     about_page()
+elif selected == "Contributors":
+    contributors_page()
