@@ -1,7 +1,5 @@
 import streamlit as st
 import easyocr
-import cv2
-import matplotlib.pyplot as plt
 from huggingface_hub import InferenceClient
 import random
 import time
@@ -92,26 +90,14 @@ def process_image(uploaded_image):
     st.subheader("AI Response:")
     st.text(ai_response)
 
-    # Annotate the image with the detected text areas
-    img_cv2 = cv2.cvtColor(img_array, cv2.COLOR_RGB2BGR)
-    for detection in result:
-        top_left = tuple([int(val) for val in detection[0][0]])
-        bottom_right = tuple([int(val) for val in detection[0][2]])
-        img_cv2 = cv2.rectangle(img_cv2, top_left, bottom_right, (0, 255, 0), 3)
-        cv2.putText(img_cv2, detection[1], top_left, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-
-    # Convert back to RGB and display annotated image
-    img_rgb = cv2.cvtColor(img_cv2, cv2.COLOR_BGR2RGB)
-    st.subheader("Annotated Image:")
-    plt.imshow(img_rgb)
-    plt.axis('off')
-    st.pyplot(plt)
+    # Simply display the image without annotations (no OpenCV)
+    st.subheader("Original Image:")
+    st.image(image, caption='Uploaded Image', use_column_width=True)
 
 # Main page with Streamlit interface
 def contributors_page():
     st.balloons()
-    st.write("""
-                <h1 style="text-align: center; color:#FFF6F4;">Ask me about your Medical Documents</h1><hr>
+    st.write("""<h1 style="text-align: center; color:#FFF6F4;">Ask me about your Medical Documents</h1><hr>
                 <p style="text-align:center;">Upload an image to extract text and analyze if it relates to medical documents.</p>
             """, unsafe_allow_html=True)
 
