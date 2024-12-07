@@ -7,7 +7,7 @@ from contributors import contributors_page
 
 # Set Streamlit page configuration
 st.set_page_config(
-    page_title="CareNetAI",
+    page_title="LokahiCare",
     page_icon="🇲🇲",
     initial_sidebar_state="expanded"
 )
