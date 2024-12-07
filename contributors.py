@@ -1,5 +1,6 @@
 import streamlit as st
 import easyocr
+import numpy as np  # Import numpy
 from huggingface_hub import InferenceClient
 import random
 import time
@@ -69,7 +70,7 @@ def format_prompt_mixtral(message, history):
 # Function to process and display OCR text and image
 def process_image(uploaded_image):
     image = Image.open(uploaded_image)
-    img_array = np.array(image)
+    img_array = np.array(image)  # Now numpy is imported, this will work
 
     # Perform OCR on the image
     result = reader.readtext(img_array)
