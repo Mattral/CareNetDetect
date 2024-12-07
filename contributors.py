@@ -87,9 +87,12 @@ def process_image(uploaded_image):
     # Get AI response based on the extracted text
     ai_response = get_medical_ai_response(extracted_text)
     
-    # Display AI response
-    st.subheader("AI Response:")
-    st.text(ai_response)
+    # Display AI response with a black background and white text
+    st.markdown(f"""
+        <div style="background-color: black; padding: 20px; border-radius: 10px;">
+            <p style="color: white; word-wrap: break-word; max-width: 700px; margin: 0; font-size: 18px;">{ai_response}</p>
+        </div>
+    """, unsafe_allow_html=True)
 
     # Simply display the image without annotations (no OpenCV)
     st.subheader("Original Image:")
