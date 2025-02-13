@@ -72,7 +72,7 @@ selected = option_menu(
 # Function for the model page
 def model_page():
     st.sidebar.image("assets/logo.png")
-    st.sidebar.write("<h1>Made for Lokahi Hackathon, Disease Detection tool<h1><br>", unsafe_allow_html=True)
+    st.sidebar.write("<h1>Made with love, Disease Detection tool<h1><br>", unsafe_allow_html=True)
     selected_task = st.sidebar.selectbox("Select Task",
                                          ["Cancer Detection", "Tuberculosis Detection", "Covid Detection",
                                           "Pneumonia Detection", "Alzheimer's (beta)"])
